@@ -18,4 +18,4 @@
 * In Memory 접근을 위한 port 는 8080 입니다.
 * In Memory 기반 으로 동작하기에 별도의 설정은 필요하지 않습니다.
 * H2 Console [http://localhost:8080/h2-console](http://localhost:8080/h2-console) 주소로 접근할 수 있습니다.
-
+* 어플리케이션은 update 진행 중 입니다.
