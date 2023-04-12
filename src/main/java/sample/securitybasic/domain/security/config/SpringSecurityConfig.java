@@ -18,19 +18,18 @@ import sample.securitybasic.domain.security.provider.JwtTokenProvider;
 @EnableWebSecurity
 @Configuration
 public class SpringSecurityConfig {
+
   private final JwtTokenProvider jwtTokenProvider;
 
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    return http.httpBasic()
-        .disable()
+    return http.httpBasic().disable()
         .csrf().disable()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authorizeRequests()
-        .antMatchers("/v1/user/**").permitAll()
+        .antMatchers("/member/**").permitAll()
         .anyRequest().authenticated()
         .and()
         .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
@@ -40,7 +39,7 @@ public class SpringSecurityConfig {
   @Bean
   public WebSecurityCustomizer webSecurityCustomizer() {
     return (webSecurity) -> webSecurity.ignoring()
-        .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/**", "/h2-console/**");
+        .antMatchers("/h2-console/**");
   }
 
   @Bean
