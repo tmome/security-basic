@@ -14,7 +14,6 @@ import sample.securitybasic.domain.member.domain.MemberEntity;
 @AllArgsConstructor
 public class MemberResponseDto {
   private String memberLoginId;
-  private String memberPassword;
   private String authority;
 
 
@@ -22,7 +21,6 @@ public class MemberResponseDto {
     return MemberResponseDto
         .builder()
         .memberLoginId(member.getMemberLoginId())
-        .memberPassword(member.getMemberPassword())
         .authority(member.getAuthority())
         .build();
   }

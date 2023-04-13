@@ -56,7 +56,7 @@ class MemberSignUpServiceTest {
     //then
     assertThat(result).isNotNull()
         .isInstanceOf(MemberResponseDto.class)
-        .extracting("memberPassword")
-        .isEqualTo(memberEntity.getMemberPassword());
+        .extracting("memberLoginId")
+        .isEqualTo(memberEntity.getMemberLoginId());
   }
 }
