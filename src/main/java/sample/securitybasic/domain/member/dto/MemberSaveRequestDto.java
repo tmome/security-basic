@@ -1,6 +1,5 @@
 package sample.securitybasic.domain.member.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,12 +11,12 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class MemberRequestDto {
+public class MemberSaveRequestDto {
   private String memberLoginId;
   private String memberPassword;
   private String authority;
 
-  public MemberRequestDto(
+  public MemberSaveRequestDto(
       String memberLoginId,
       String memberPassword,
       String authority

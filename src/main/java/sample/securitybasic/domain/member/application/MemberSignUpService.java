@@ -5,8 +5,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sample.securitybasic.domain.member.domain.MemberEntity;
-import sample.securitybasic.domain.member.dto.MemberRequestDto;
-import sample.securitybasic.domain.member.dto.MemberResponseDto;
+import sample.securitybasic.domain.member.dto.MemberSaveRequestDto;
+import sample.securitybasic.domain.member.dto.MemberSaveResponseDto;
 import sample.securitybasic.domain.member.repository.MemberRepository;
 
 @Service
@@ -17,17 +17,17 @@ public class MemberSignUpService {
   private final MemberRepository memberRepository;
   private final PasswordEncoder passwordEncoder;
 
-  public MemberResponseDto save(final MemberRequestDto memberRequestDto) {
-    final var saveMemberEntity = memberRepository.save(buildForMemberEntity(memberRequestDto));
+  public MemberSaveResponseDto createForMember(final MemberSaveRequestDto memberSaveRequestDto) {
+    final var saveMemberEntity = memberRepository.save(buildForMemberEntity(memberSaveRequestDto));
 
-    return MemberResponseDto.of(saveMemberEntity);
+    return MemberSaveResponseDto.of(saveMemberEntity);
   }
 
-  private MemberEntity buildForMemberEntity(final MemberRequestDto memberRequestDto) {
+  private MemberEntity buildForMemberEntity(final MemberSaveRequestDto memberSaveRequestDto) {
     return MemberEntity.builder()
-        .memberLoginId(memberRequestDto.getMemberLoginId())
-        .memberPassword(passwordEncoder.encode(memberRequestDto.getMemberPassword()))
-        .authority(memberRequestDto.getAuthority())
+        .memberLoginId(memberSaveRequestDto.getMemberLoginId())
+        .memberPassword(passwordEncoder.encode(memberSaveRequestDto.getMemberPassword()))
+        .authority(memberSaveRequestDto.getAuthority())
         .build();
   }
 

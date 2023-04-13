@@ -12,8 +12,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import sample.securitybasic.domain.member.domain.MemberEntity;
-import sample.securitybasic.domain.member.dto.MemberRequestDto;
-import sample.securitybasic.domain.member.dto.MemberResponseDto;
+import sample.securitybasic.domain.member.dto.MemberSaveRequestDto;
+import sample.securitybasic.domain.member.dto.MemberSaveResponseDto;
 import sample.securitybasic.domain.member.repository.MemberRepository;
 
 @ExtendWith(SpringExtension.class)
@@ -35,7 +35,7 @@ class MemberSignUpServiceTest {
   @Test
   void 멤버_회원가입_테스트() {
     //given
-    final var memberRequestDto = MemberRequestDto.builder()
+    final var memberRequestDto = MemberSaveRequestDto.builder()
         .memberLoginId("test")
         .memberPassword("test")
         .authority("USER").build();
@@ -51,11 +51,11 @@ class MemberSignUpServiceTest {
     //when
 
 
-    final var result =  memberSignUpService.save(memberRequestDto);
+    final var result =  memberSignUpService.createForMember(memberRequestDto);
 
     //then
     assertThat(result).isNotNull()
-        .isInstanceOf(MemberResponseDto.class)
+        .isInstanceOf(MemberSaveResponseDto.class)
         .extracting("memberLoginId")
         .isEqualTo(memberEntity.getMemberLoginId());
   }

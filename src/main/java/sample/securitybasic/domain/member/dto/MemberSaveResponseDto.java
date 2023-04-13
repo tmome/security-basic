@@ -12,13 +12,13 @@ import sample.securitybasic.domain.member.domain.MemberEntity;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberResponseDto {
+public class MemberSaveResponseDto {
   private String memberLoginId;
   private String authority;
 
 
-  public static MemberResponseDto of(final MemberEntity member) {
-    return MemberResponseDto
+  public static MemberSaveResponseDto of(final MemberEntity member) {
+    return MemberSaveResponseDto
         .builder()
         .memberLoginId(member.getMemberLoginId())
         .authority(member.getAuthority())
