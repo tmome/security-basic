@@ -10,9 +10,14 @@ import lombok.Setter;
 @Setter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class MemberLoginRequestDto {
   private String memberLoginId;
   private String memberPassword;
 
+  public MemberLoginRequestDto(String memberLoginId, String memberPassword) {
+    this.memberLoginId = memberLoginId;
+    this.memberPassword = memberPassword;
+  }
 }
+
+

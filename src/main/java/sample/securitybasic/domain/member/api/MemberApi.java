@@ -12,7 +12,8 @@ import sample.securitybasic.domain.member.dto.MemberLoginRequestDto;
 import sample.securitybasic.domain.member.dto.MemberLoginResponseDto;
 import sample.securitybasic.domain.member.dto.MemberSaveRequestDto;
 import sample.securitybasic.domain.member.dto.MemberSaveResponseDto;
-import sample.securitybasic.domain.security.dto.AuthTokenInfo;
+import sample.securitybasic.domain.support.filter.ApiResponse;
+import sample.securitybasic.domain.support.filter.ApiResponseGenerator;
 
 @Slf4j
 @RestController
@@ -24,12 +25,12 @@ public class MemberApi {
   private final MemberLoginService memberLoginService;
 
   @PostMapping("/signup")
-  public MemberSaveResponseDto create(final @RequestBody MemberSaveRequestDto memberSaveRequestDto) {
-    return memberSignUpService.createForMember(memberSaveRequestDto);
+  public ApiResponse<MemberSaveResponseDto> create(final @RequestBody MemberSaveRequestDto memberSaveRequestDto) {
+    return ApiResponseGenerator.success(memberSignUpService.createForMember(memberSaveRequestDto));
   }
 
   @PostMapping("/login")
-  public MemberLoginResponseDto login(final @RequestBody MemberLoginRequestDto memberLoginRequestDto) {
-    return memberLoginService.login(memberLoginRequestDto);
+  public ApiResponse<MemberLoginResponseDto> login(final @RequestBody MemberLoginRequestDto memberLoginRequestDto) {
+    return ApiResponseGenerator.success(memberLoginService.login(memberLoginRequestDto));
   }
 }
